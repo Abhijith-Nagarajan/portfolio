@@ -1,9 +1,21 @@
-/* Center title on single non-blog pages (About, future Resume/Contact, etc.).
-   PaperMod renders an empty <div class="post-meta"> for all pages, so we can't
-   just check for its existence. Instead, check whether it has any element
-   children — blog posts populate it with date/read-time spans; about-like
-   pages leave it empty (whitespace only). */
-.post-header:not(:has(.post-meta *)) {
+/* Center the page title on every page.
+   Once blog posts are added and you want their titles left-aligned, scope
+   this with e.g. `body:not(.list-blogs) .post-title { text-align: center }`
+   or override per-section. */
+.post-title {
+    text-align: center;
+}
+
+/* PaperMod gives single-page <h1>s the class `entry-hint-parent`, which sets
+   `display: flex; justify-content: space-between`. That turns text-align into
+   a no-op for the title text. Override justify-content so the title centers. */
+.post-title.entry-hint-parent {
+    justify-content: center;
+}
+
+/* Section list pages (e.g. /blogs/) use `<header class="page-header"><h1>...</h1></header>`
+   instead of `.post-title`. Center their title + description block too. */
+.page-header {
     text-align: center;
 }
 

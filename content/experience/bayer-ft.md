@@ -2,6 +2,7 @@
 title: "Bayer"
 track: "work"
 role: "Data Scientist, Field Testing / Operations Analytics"
+location: "Champaign, IL"
 date: 2025-07-01
 start: "2025-07"
 end: "2025-12"

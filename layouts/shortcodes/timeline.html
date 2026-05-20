@@ -52,7 +52,8 @@
       {{- if $topList }}
       <div class="timeline__cell timeline__cell--edu">
         {{- range $topList }}
-        {{- partial "timeline-card.html" (dict "page" . "kind" "edu") }}
+        {{- $kind := cond (eq .Params.track "education") "edu" "work" }}
+        {{- partial "timeline-card.html" (dict "page" . "kind" $kind) }}
         {{- end }}
       </div>
       {{- else }}
@@ -68,7 +69,8 @@
       {{- if $bottomList }}
       <div class="timeline__cell timeline__cell--work">
         {{- range $bottomList }}
-        {{- partial "timeline-card.html" (dict "page" . "kind" "work") }}
+        {{- $kind := cond (eq .Params.track "education") "edu" "work" }}
+        {{- partial "timeline-card.html" (dict "page" . "kind" $kind) }}
         {{- end }}
       </div>
       {{- else }}

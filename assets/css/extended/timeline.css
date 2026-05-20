@@ -181,8 +181,13 @@
     transform: translateY(-1px);
 }
 
-.timeline__card--edu  { border-top: 3px solid #5b6cdf; }
-.timeline__card--work { border-bottom: 3px solid #2f8a4d; }
+/* Accent line position is dictated by the CELL (top vs bottom — placed against
+   the side furthest from the axis). Color is dictated by the TRACK (edu = purple,
+   work = green), so a work-tracked card placed at the top still reads as work. */
+.timeline__cell--edu  .timeline__card--edu  { border-top:    3px solid #5b6cdf; }
+.timeline__cell--edu  .timeline__card--work { border-top:    3px solid #2f8a4d; }
+.timeline__cell--work .timeline__card--edu  { border-bottom: 3px solid #5b6cdf; }
+.timeline__cell--work .timeline__card--work { border-bottom: 3px solid #2f8a4d; }
 
 .timeline__card-head {
     display: flex;
@@ -227,11 +232,12 @@
 }
 
 .timeline__card-name {
-    font-size: 0.92rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--primary);
     margin: 0;
     line-height: 1.3;
+    text-wrap: balance;
 }
 
 .timeline__card-name a {
@@ -259,6 +265,13 @@
     margin: 2px 0 0;
     line-height: 1.3;
     font-style: italic;
+}
+
+.timeline__card-location {
+    font-size: 0.72rem;
+    color: var(--secondary);
+    margin: 2px 0 0;
+    line-height: 1.3;
 }
 
 .timeline__card-desc {
@@ -307,6 +320,22 @@
 .timeline__card-tech a.timeline__tech-link:hover {
     color: var(--primary);
     background-color: var(--border);
+}
+
+.timeline__card-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--secondary);
+    transition: border-bottom-color 0.15s ease;
+}
+
+.timeline__card-more:hover {
+    border-bottom-color: var(--primary);
+    border-bottom-style: solid;
 }
 
 /* --- Mobile: vertical stack --- */

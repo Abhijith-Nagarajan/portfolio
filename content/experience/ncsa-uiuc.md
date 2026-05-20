@@ -1,8 +1,9 @@
 ---
-title: "NCSA, UIUC"
+title: "National Center for Supercomputing Applications"
 track: "work"
 placement: "top"
 role: "Research Assistant, Generative & Agentic AI"
+location: "Champaign, IL"
 date: 2025-07-01
 start: "2025-07"
 end: "2025-12"

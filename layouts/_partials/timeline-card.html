@@ -26,6 +26,7 @@
       <h3 class="timeline__card-name">{{ $p.Title }}</h3>
       {{- end }}
       {{- with $p.Params.role }}<p class="timeline__card-role">{{ . }}</p>{{- end }}
+      {{- with $p.Params.location }}<p class="timeline__card-location">{{ . }}</p>{{- end }}
       {{- with $p.Params.dateLabel }}<p class="timeline__card-dates">{{ . }}</p>{{- end }}
     </div>
   </div>
@@ -40,4 +41,5 @@
     {{- end }}
   </ul>
   {{- end }}
+  <a class="timeline__card-more" href="{{ $p.RelPermalink }}">Learn more →</a>
 </article>

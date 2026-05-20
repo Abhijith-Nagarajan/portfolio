@@ -1,7 +1,8 @@
 ---
-title: "Bayer"
+title: "Bayer - Internship"
 track: "work"
 role: "Data Science Intern, Analytics"
+location: "Champaign, IL"
 date: 2024-05-01
 start: "2024-05"
 end: "2024-12"

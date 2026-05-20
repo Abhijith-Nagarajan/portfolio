@@ -14,10 +14,12 @@ theme = 'PaperMod'
 
     # Landing-page content (consumed by layouts/index.html).
     # `headline` renders in UPPERCASE (Manrope) — the designation.
-    # `subhead` stays in normal case — the specialty/description.
+    # `subhead` stays in normal case — the pitch line.
+    # `pitch` is the focus-areas list, separated by interpuncts.
     [params.landing]
-        headline = 'Data Scientist & Software Engineer'
-        subhead = 'Specializing in Applied AI, predictive modeling, operational analytics, and enterprise automation.'
+        headline = 'Applied AI Engineer & Data Scientist'
+        subhead = 'Building scalable AI, analytics, and automation systems from prototype to production.'
+        pitch = 'LLM/RAG Systems · Agentic AI · Predictive Modeling · Operational Analytics · Automation'
         email = 'abhijith3008@gmail.com'
 
 # Top-right navigation: text tabs + social icons in one nav bar.

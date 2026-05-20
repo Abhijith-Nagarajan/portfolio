@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "A selection of work in applied AI, predictive modeling, and enterprise automation."
+description: "A selection of personal projects in Applied AI, machine learning, and data visualization."
 ---

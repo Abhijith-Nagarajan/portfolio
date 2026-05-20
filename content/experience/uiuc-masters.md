@@ -2,6 +2,7 @@
 title: "University of Illinois Urbana-Champaign"
 track: "education"
 role: "Master's in Statistics"
+location: "Urbana-Champaign, IL"
 date: 2023-08-01
 start: "2023-08"
 end: "2025-05"

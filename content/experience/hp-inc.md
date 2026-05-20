@@ -2,6 +2,7 @@
 title: "Hewlett-Packard Inc."
 track: "work"
 role: "Software Engineer, RPA & AI"
+location: "Bangalore, India"
 date: 2021-09-01
 start: "2021-09"
 end: "2023-07"

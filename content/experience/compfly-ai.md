@@ -2,6 +2,7 @@
 title: "CompFly AI"
 track: "work"
 role: "Software Engineer, Applied AI"
+location: "Livermore, CA"
 date: 2025-12-01
 start: "2025-12"
 end: "present"
