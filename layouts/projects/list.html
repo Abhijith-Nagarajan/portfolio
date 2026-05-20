@@ -1,0 +1,118 @@
+{{- define "main" }}
+
+<header class="post-header">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <div class="post-meta"></div>
+</header>
+
+{{- with .Description }}
+<p class="page-intro">{{ . }}</p>
+{{- end }}
+
+{{- $allProjects := where .Site.RegularPages "Section" "projects" }}
+{{- $allProjects = $allProjects.ByWeight }}
+
+{{/* Build the unique list of domains across all projects (preserving order of first appearance). */}}
+{{- $domainList := slice }}
+{{- range $allProjects }}
+  {{- range .Params.domains }}
+    {{- if not (in $domainList .) }}
+      {{- $domainList = $domainList | append . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+<div class="projects-layout">
+
+  <aside class="projects-filters" aria-label="Project filters">
+    <label class="projects-filters__heading" for="projects-search">Search</label>
+    <input
+      id="projects-search"
+      type="search"
+      class="projects-filters__search"
+      placeholder="Search projects…"
+      autocomplete="off"
+      aria-label="Search projects"
+    >
+
+    <p class="projects-filters__heading">Domains</p>
+    <ul class="projects-filters__list" role="radiogroup" aria-label="Filter by domain">
+      <li>
+        <button type="button" class="projects-filters__btn projects-filters__btn--active" data-domain="all" role="radio" aria-checked="true">All</button>
+      </li>
+      {{- range $domainList }}
+      <li>
+        <button type="button" class="projects-filters__btn" data-domain="{{ . }}" role="radio" aria-checked="false">{{ . }}</button>
+      </li>
+      {{- end }}
+    </ul>
+  </aside>
+
+  <div class="projects-grid-wrapper">
+    <div class="landing-projects" id="projects-grid">
+      {{- range $allProjects }}
+      {{- partial "project-card.html" . }}
+      {{- end }}
+    </div>
+    <p class="projects-empty" hidden>No projects match the current filter.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  const buttons = document.querySelectorAll('.projects-filters__btn');
+  const searchInput = document.getElementById('projects-search');
+  const cards = document.querySelectorAll('[data-project-card]');
+  const emptyState = document.querySelector('.projects-empty');
+
+  let activeDomain = 'all';
+  let searchTerm = '';
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach(card => {
+      const cardDomains = (card.dataset.domains || '')
+        .split(',')
+        .map(d => d.trim().toLowerCase())
+        .filter(Boolean);
+      const haystack = (card.dataset.search || '').toLowerCase();
+
+      const domainMatch = activeDomain === 'all' || cardDomains.includes(activeDomain.toLowerCase());
+      const searchMatch = !searchTerm || haystack.includes(searchTerm);
+
+      if (domainMatch && searchMatch) {
+        card.removeAttribute('hidden');
+        visible++;
+      } else {
+        card.setAttribute('hidden', '');
+      }
+    });
+    if (visible === 0) {
+      emptyState.removeAttribute('hidden');
+    } else {
+      emptyState.setAttribute('hidden', '');
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => {
+        b.classList.remove('projects-filters__btn--active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.classList.add('projects-filters__btn--active');
+      btn.setAttribute('aria-checked', 'true');
+      activeDomain = btn.dataset.domain;
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', e => {
+    searchTerm = e.target.value.trim().toLowerCase();
+    applyFilters();
+  });
+})();
+</script>
+
+{{- end }}

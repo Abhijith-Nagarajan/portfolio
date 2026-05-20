@@ -9,6 +9,7 @@ end: "2025-12"
 period: 4
 periodLabel: "Jul 2025 – Dec 2025"
 description: "Biomedical reasoning research on causal links between genetic perturbations and cancer phenotypes."
+metric: "100K+ Neo4j triples · 0.64 F1 on BioASQ"
 logo: "ncsa.png"
 tags:
   - "Biomedical AI"

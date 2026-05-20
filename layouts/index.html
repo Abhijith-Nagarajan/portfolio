@@ -22,26 +22,7 @@
   {{- if $featured }}
   <div class="landing-projects">
     {{- range $featured }}
-    <article class="landing-project">
-      <header class="landing-project__header">
-        <h3 class="landing-project__title">{{ .Title }}</h3>
-        {{- with .Params.status }}
-        <span class="landing-badge landing-badge--{{ . | lower }}">{{ . }}</span>
-        {{- end }}
-      </header>
-      {{- with .Description }}
-      <p class="landing-project__desc">{{ . }}</p>
-      {{- end }}
-      {{- with .Params.metric }}
-      <p class="landing-project__metric">{{ . }}</p>
-      {{- end }}
-      {{- with .Params.tech }}
-      <ul class="landing-tags">
-        {{- range . }}<li class="landing-tag">{{ . }}</li>{{ end }}
-      </ul>
-      {{- end }}
-      <a class="landing-more" href="{{ .RelPermalink }}">Learn more →</a>
-    </article>
+    {{- partial "project-card.html" . }}
     {{- end }}
   </div>
   {{- else }}

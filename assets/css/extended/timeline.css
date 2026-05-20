@@ -268,6 +268,18 @@
     margin: 0 0 8px;
 }
 
+.timeline__card-metric {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0 8px;
+    padding: 4px 8px;
+    background: var(--tertiary);
+    border-radius: 4px;
+    display: inline-block;
+}
+
 .timeline__card-tech {
     display: flex;
     flex-wrap: wrap;

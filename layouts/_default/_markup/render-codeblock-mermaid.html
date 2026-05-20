@@ -1,0 +1,9 @@
+{{/*
+  Render hook for ```mermaid code blocks.
+  Emits a <pre class="mermaid"> element and flips a page-level flag so
+  extend_footer.html knows to load the Mermaid runtime on this page only.
+*/}}
+<pre class="mermaid">
+  {{- .Inner | safeHTML }}
+</pre>
+{{- .Page.Store.Set "hasMermaid" true }}

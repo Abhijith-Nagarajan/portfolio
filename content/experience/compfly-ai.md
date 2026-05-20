@@ -8,6 +8,7 @@ end: "present"
 period: 5
 periodLabel: "Dec 2025 – Present"
 description: "Developed AI evaluation frameworks, red-teaming workflows, and inference systems to improve the reliability, safety, and robustness of agentic AI applications."
+metric: "+15% detection coverage · sub-10–150 ms inference"
 logo: "compfly.png"
 tags:
   - "Agentic AI"

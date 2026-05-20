@@ -1,0 +1,30 @@
+{{/*
+  Single project card. Receives a Page as context.
+  Used by:
+    - layouts/index.html (Featured Projects section on landing)
+    - layouts/projects/list.html (the /projects/ catalog page)
+  The data-* attributes are harmless on the landing and used by the
+  /projects/ page for client-side filter + search.
+*/}}
+{{- $searchHaystack := printf "%s %s %s %s" .Title .Description (.Params.metric | default "") (delimit .Params.tags " ") | lower }}
+{{- $domains := delimit .Params.domains "," }}
+<article class="landing-project" data-project-card data-domains="{{ $domains }}" data-search="{{ $searchHaystack }}">
+  <header class="landing-project__header">
+    <h3 class="landing-project__title">{{ .Title }}</h3>
+    {{- with .Params.status }}
+    <span class="landing-badge landing-badge--{{ . | lower }}">{{ . }}</span>
+    {{- end }}
+  </header>
+  {{- with .Description }}
+  <p class="landing-project__desc">{{ . }}</p>
+  {{- end }}
+  {{- with .Params.metric }}
+  <p class="landing-project__metric">{{ . }}</p>
+  {{- end }}
+  {{- with .Params.tags }}
+  <ul class="landing-tags">
+    {{- range . }}<li class="landing-tag"><a href="/tags/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+  </ul>
+  {{- end }}
+  <a class="landing-more" href="{{ .RelPermalink }}">Learn more →</a>
+</article>

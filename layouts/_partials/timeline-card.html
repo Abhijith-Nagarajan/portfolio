@@ -30,6 +30,9 @@
     </div>
   </div>
   <p class="timeline__card-desc">{{ $p.Params.description }}</p>
+  {{- with $p.Params.metric }}
+  <p class="timeline__card-metric">{{ . }}</p>
+  {{- end }}
   {{- with $p.Params.tags }}
   <ul class="timeline__card-tech">
     {{- range . }}

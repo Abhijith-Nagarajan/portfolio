@@ -196,10 +196,22 @@
 
 .landing-tag {
     font-size: 0.75rem;
-    padding: 2px 8px;
     border-radius: 4px;
     background: var(--tertiary);
+    line-height: 1.5;
+}
+
+.landing-tag a {
+    display: inline-block;
+    padding: 2px 8px;
     color: var(--secondary);
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.landing-tag a:hover {
+    color: var(--primary);
+    background-color: var(--border);
 }
 
 .landing-more {

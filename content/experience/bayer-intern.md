@@ -9,6 +9,7 @@ period: 3
 periodLabel: "Aug 2023 – May 2025"
 dateLabel: "May – Dec 2024"
 description: "Implemented predictive maintenance analytics and failure-analysis workflows to improve field equipment reliability across global sites."
+metric: "RMSE 35 · 40% faster ETL · 21 global sites"
 logo: "bayer.png"
 companies: ["Bayer"]
 tags:

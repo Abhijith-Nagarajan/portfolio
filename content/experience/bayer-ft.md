@@ -8,6 +8,7 @@ end: "2025-12"
 period: 4
 periodLabel: "Jul 2025 – Dec 2025"
 description: "Built centralized analytics for maintenance, operations, and inventory planning to support equipment reliability and field decision-making."
+metric: "$200K maintenance cost saved · 10+ planters/combines tracked"
 logo: "bayer.png"
 companies: ["Bayer"]
 tags:

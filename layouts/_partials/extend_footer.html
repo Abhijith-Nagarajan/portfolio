@@ -1,0 +1,68 @@
+{{- /* Mermaid modal + loader.
+
+  Always rendered because PaperMod wraps footer.html in partialCached — gating on
+  .Store.Get "hasMermaid" doesn't work since the first cached call wins for all
+  pages. Instead the script self-bails when there are no mermaid blocks, and
+  dynamic-imports the runtime only when needed. */ -}}
+
+<div class="mermaid-modal" id="mermaid-modal" role="dialog" aria-modal="true" aria-label="Diagram preview" hidden>
+  <button class="mermaid-modal__close" aria-label="Close">×</button>
+  <div class="mermaid-modal__content"></div>
+</div>
+
+<script>
+(async function () {
+  const blocks = document.querySelectorAll('pre.mermaid');
+  if (blocks.length === 0) return;
+
+  const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: isDark ? 'dark' : 'default',
+    securityLevel: 'loose',
+    flowchart: { curve: 'basis', useMaxWidth: true }
+  });
+
+  /* startOnLoad won't fire because DOMContentLoaded already passed by the
+     time we dynamic-import — call run() explicitly to process the blocks. */
+  await mermaid.run({ querySelector: 'pre.mermaid' });
+
+  const modal = document.getElementById('mermaid-modal');
+  if (!modal) return;
+  modal.hidden = false;
+  const slot = modal.querySelector('.mermaid-modal__content');
+  const closeBtn = modal.querySelector('.mermaid-modal__close');
+
+  function open(svg) {
+    slot.innerHTML = '';
+    const clone = svg.cloneNode(true);
+    clone.removeAttribute('style');
+    clone.style.maxWidth = '100%';
+    clone.style.maxHeight = '100%';
+    slot.appendChild(clone);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    modal.classList.remove('open');
+    slot.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.mermaid-modal')) return;
+    const block = e.target.closest('.mermaid');
+    if (!block) return;
+    const svg = block.querySelector('svg');
+    if (svg) open(svg);
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal || e.target === closeBtn) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+})();
+</script>

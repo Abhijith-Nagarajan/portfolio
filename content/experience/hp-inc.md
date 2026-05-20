@@ -8,6 +8,7 @@ end: "2023-07"
 period: 2
 periodLabel: "Sept 2021 – Jul 2023"
 description: "Built UiPath and OCR-based automation workflows across supply chain, customer support, finance, and marketing operations."
+metric: "+70% revenue timeliness · 11 FTEs saved · 100+ enterprise clients"
 logo: "hp.png"
 tags:
   - "Software Engineering"
